@@ -1,8 +1,7 @@
 # CincyPolitics 
 # All content on this site will be free for now -- to humans, not AI
-# CincyPolitics robots.txt — allow search, block AI, limit archiving
 
-### 1) Allow trusted search engines
+### 1) ALLOW: traditional search engines
 User-agent: Googlebot
 Allow: /
 
@@ -27,62 +26,90 @@ Allow: /
 User-agent: Bravebot
 Allow: /
 
-### 2) Opt-out of AI training
+# (Optional) Allow Internet Archive
+User-agent: ia_archiver
+Disallow: /
+
+### 2) OPT-OUT of AI training by major search vendors
+# Google Gemini/Vertex AI training control (not a crawler for indexing)
 User-agent: Google-Extended
 Disallow: /
 
+# Apple AI training control (not a crawler for indexing)
 User-agent: Applebot-Extended
 Disallow: /
 
-### 3) Block AI and data crawlers
+### 3) BLOCK: OpenAI (ChatGPT/SearchGPT) crawlers & user-agents
 User-agent: GPTBot
 Disallow: /
+
 User-agent: OAI-SearchBot
 Disallow: /
+
 User-agent: ChatGPT-User
 Disallow: /
+
+### 4) BLOCK: Anthropic (Claude) crawlers
 User-agent: ClaudeBot
 Disallow: /
+
 User-agent: Claude-SearchBot
 Disallow: /
+
 User-agent: Claude-User
 Disallow: /
+
+### 5) BLOCK: Perplexity crawlers & fetchers
 User-agent: PerplexityBot
 Disallow: /
+
 User-agent: Perplexity-User
 Disallow: /
+
+### 6) BLOCK: Meta / Facebook AI crawler
 User-agent: meta-externalagent
 Disallow: /
+
+# (Note) If you rely on social link previews, DO NOT block facebookexternalhit.
+# User-agent: facebookexternalhit
+# Disallow: /
+
+### 7) BLOCK: Amazon/Alexa AI crawler
 User-agent: Amazonbot
 Disallow: /
+
+### 8) BLOCK: Common Crawl and large-scale data harvesters
 User-agent: CCBot
 Disallow: /
+
+### 9) BLOCK: ByteDance/TikTok crawler
 User-agent: Bytespider
 Disallow: /
+
+### 10) BLOCK: AI-first search engines / meta-crawlers
 User-agent: YouBot
 Disallow: /
+
 User-agent: PhindBot
 Disallow: /
+
 User-agent: AndiBot
 Disallow: /
+
 User-agent: ExaBot
 Disallow: /
+
 User-agent: Firecrawl
 Disallow: /
+
 User-agent: FirecrawlAgent
 Disallow: /
 
-### 4) Internet Archive control
-# Allow only static "about" and "policy" pages
-User-agent: ia_archiver
-Disallow: /
-Allow: /about
-Allow: /policy
-
-### 5) Default deny for unknown bots
+### 11) DEFAULT: deny unknown/unspecified bots
 User-agent: *
 Disallow: /
 
-### 6) Sitemaps
+### 12) Sitemaps
 Sitemap: https://www.cincypolitics.org/sitemap.xml
-Sitemap: https://www.cincypolitics.com/sitemap.xml
+# If also serving on .com:
+# Sitemap: https://www.cincypolitics.com/sitemap.xml
